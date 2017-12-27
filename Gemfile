@@ -29,7 +29,13 @@ gem 'active_model_serializers'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara', '~> 2.13'
+  gem 'selenium-webdriver'
   gem 'pry'
+  gem 'pry-remote'
+  gem 'rspec-rails'
+  gem 'factory_bot'
+  gem 'database_cleaner'
 end
 
 group :development do
