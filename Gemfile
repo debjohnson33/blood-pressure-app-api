@@ -34,7 +34,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-remote'
   gem 'rspec-rails'
-  gem 'factory_bot'
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'database_cleaner'
 end
 
