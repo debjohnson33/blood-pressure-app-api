@@ -16,7 +16,7 @@ RSpec.describe 'Measurements API', type: :request do
 	# POST /api/user/measurements (new measurement)
 	# GET /api/user/measurements/:id
 	# PUT /api/user/measurements/:id
-	# DELEATE /api/user/measurements/:id
+	# DELETE /api/user/measurements/:id
 
 
 end
