@@ -11,4 +11,8 @@ RSpec.describe Measurement, type: :model do
 		it { should validate_presence_of(:date_time)}
 		it { should validate_presence_of(:notes)}
 	end
+
+	context "relationships" do
+		it { should belong_to(:user) }
+	end
 end

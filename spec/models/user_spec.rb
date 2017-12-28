@@ -9,4 +9,8 @@ RSpec.describe User, type: :model do
 		it { should validate_presence_of(:gender)}
 		it { should validate_presence_of(:birthdate)}
 	end
+
+	context "relationships" do
+		it { should have_many(:measurements).dependent(:destroy) }
+	end
 end

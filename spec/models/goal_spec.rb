@@ -9,4 +9,8 @@ RSpec.describe Goal, type: :model do
 		it { should validate_presence_of(:diastolic_bp)}
 		it { should validate_presence_of(:frequency)}
 	end
+
+	context "relationships" do
+		it { should belong_to(:user) }
+	end
 end
