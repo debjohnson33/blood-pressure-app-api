@@ -30,8 +30,8 @@ RSpec.describe 'Users API', type: :request do
 			let(:valid_params) {
 				{
 					user: {
-						username: Faker::Internet.user_name,
-					    email: Faker::Internet.safe_email,
+						username: "nancy",
+					    email: "nancy@example.com",
 					    password: "password",
 					    password_confirmation: "password" 
 					}
@@ -47,10 +47,10 @@ RSpec.describe 'Users API', type: :request do
 
 				expect(json).not_to be_empty
 				expect(json[:id]).not_to eq(nil)
-				expect(json[:first_name]).to eq(valid_params[:user][:first_name])
-				expect(json[:last_name]).to eq(valid_params[:user][:last_name])
-				expect(json[:gender]).to eq(valid_params[:user][:gender])
-				expect(json[:birthdate]).to eq(valid_params[:user][:birthdate])
+				expect(json[:username]).to eq(valid_params[:user][:username])
+				expect(json[:email]).to eq(valid_params[:user][:email])
+				expect(json[:password]).to eq(valid_params[:user][:password])
+				expect(json[:password_confirmation]).to eq(valid_params[:user][:password_confirmation])
 			end
 		end
 
@@ -58,7 +58,7 @@ RSpec.describe 'Users API', type: :request do
 			
 			before { post '/api/users', params: {
 					user: {
-						first_name: '', last_name: '', gender: '', birthdate: ''
+						username: '', email: '', password: '', password_confirmation: ''
 					}
 			}}
 
@@ -67,14 +67,13 @@ RSpec.describe 'Users API', type: :request do
 			end
 
 			it 'returns the validation error messages in JSON' do
-				json = JSON.parse(response.body, symbolize_names: true)
 
 				expect(json).not_to be_empty
 				expect(json[:errors][:messages]).to eq({
-					:first_name=>["can't be blank"],
- 					:last_name=>["can't be blank"],
- 					:gender=>["can't be blank"],
- 					:birthdate=>["can't be blank"]})
+					:username=>["can't be blank"],
+ 					:email=>["can't be blank"],
+ 					:password=>["can't be blank", "is too short (minimum is 8 characters)"],
+ 					:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"]})
 			end
 		end
 	end
@@ -94,10 +93,10 @@ RSpec.describe 'Users API', type: :request do
 
 				expect(json).not_to be_empty
 				expect(json[:id]).to eq(user_id)
-				expect(json[:first_name]).to eq(users.first.first_name)
-				expect(json[:last_name]).to eq(users.first.last_name)
-				expect(json[:gender]).to eq(users.first.gender)
-				expect(json[:birthdate]).to eq("1989-03-02T00:00:00.000Z")
+				expect(json[:username]).to eq(users.first.username)
+				expect(json[:email]).to eq(users.first.email)
+				expect(json[:password]).to eq(users.first.password)
+				expect(json[:password_confirmation]).to eq(users.first.password_confirmation)
 			end
 
 		end
@@ -129,10 +128,10 @@ RSpec.describe 'Users API', type: :request do
 				let(:valid_params) {
 					{
 						user: {
-							first_name: "Updated first name", 
-		    				last_name: "Updated last name",
-		    				gender: "Updated gender",
-		    				birthdate: "1980-03-02T00:00:00.000Z"
+							username: "Updated first name", 
+		    				email: "Updated last name",
+		    				password: "Updated password",
+		    				password_confirmation: "Updated password"
 						}
 					}
 				}
@@ -140,10 +139,10 @@ RSpec.describe 'Users API', type: :request do
 				before { put "/api/users/#{user_id}", params: valid_params}
 
 				it 'updates the user' do
-					expect(json[:first_name]).to eq(valid_params[:user][:first_name])
-					expect(json[:last_name]).to eq(valid_params[:user][:last_name])
-					expect(json[:gender]).to eq(valid_params[:user][:gender])
-					expect(json[:birthdate]).to eq(valid_params[:user][:birthdate])
+					expect(json[:username]).to eq(valid_params[:user][:username])
+					expect(json[:email]).to eq(valid_params[:user][:email])
+					expect(json[:password]).to eq(valid_params[:user][:password])
+					expect(json[:password_confirmation]).to eq(valid_params[:user][:password_confirmation])
 
 				end
 
@@ -157,10 +156,10 @@ RSpec.describe 'Users API', type: :request do
 				let(:invalid_params) {
 					{
 						user: {
-							first_name: "", 
-		    				last_name: "",
-		    				gender: "",
-		    				birthdate: ""
+							username: "", 
+		    				email: "",
+		    				password: "",
+		    				password_confirmation: ""
 						}
 					}
 				}
@@ -172,14 +171,13 @@ RSpec.describe 'Users API', type: :request do
 				end
 
 				it 'returns the validation error messages in JSON' do
-					json = JSON.parse(response.body, symbolize_names: true)
 
 					expect(json).not_to be_empty
 					expect(json[:errors][:messages]).to eq({
-						:first_name=>["can't be blank"],
-	 					:last_name=>["can't be blank"],
-	 					:gender=>["can't be blank"],
-	 					:birthdate=>["can't be blank"]})
+						:username=>["can't be blank"],
+	 					:email=>["can't be blank"],
+	 					:password=>["can't be blank", "is too short (minimum is 8 characters)"],
+	 					:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"]})
 				end
 			end
 		end
