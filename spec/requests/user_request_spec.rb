@@ -177,7 +177,8 @@ RSpec.describe 'Users API', type: :request do
 						:username=>["can't be blank"],
 	 					:email=>["can't be blank"],
 	 					#:password=>["can't be blank", "is too short (minimum is 8 characters)"],
-	 					#:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"]})
+	 					#:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"
+	 					})
 				end
 			end
 		end
@@ -201,6 +202,29 @@ RSpec.describe 'Users API', type: :request do
 
 	describe 'DELETE /api/users/:id' do
 		
+		context 'if user exists' do
+
+			before { delete "/api/users/#{user_id}"}
+
+			it 'returns a status code 204' do
+				expect(response).to have_http_status(204)
+			end
+		end
+
+		context 'if user does not exist' do
+
+			before { delete "/api/users/10000"}
+
+			it 'returns a status code of 404' do
+				expect(response).to have_http_status(404)
+			end
+
+			it 'returns error messages of not found in JSON' do
+				expect(json).not_to be_empty
+				expect(json[:errors][:messages]).to eq({
+					:user=>"can't be found"})
+			end
+		end
 	end
 
 end

@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 	
-	before_action :set_user, only: [:show, :update]
+	before_action :set_user, only: [:show, :update, :destroy]
 
 	def index
 		users = User.all
@@ -28,6 +28,11 @@ class Api::UsersController < ApplicationController
 		else
 			render_errors_in_json
 		end
+	end
+
+	def destroy
+		@user.destroy
+		:no_content
 	end
 
 	private
