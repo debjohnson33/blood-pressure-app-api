@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Measurements API', type: :request do
+RSpec.describe 'Users API', type: :request do
 	
 	#Initial Test Data
 	let!(:users) { FactoryBot.create_list(:user, 5)}
+	let(:user_id) { users.first.id}
 
 	# GET /api/users
 	describe 'GET /api/users' do
@@ -44,7 +45,6 @@ RSpec.describe 'Measurements API', type: :request do
 			end
 
 			it 'creates a user and returns it in JSON' do
-				json = JSON.parse(response.body, symbolize_names: true)
 
 				expect(json).not_to be_empty
 				expect(json[:id]).not_to eq(nil)
@@ -77,6 +77,22 @@ RSpec.describe 'Measurements API', type: :request do
  					:gender=>["can't be blank"],
  					:birthdate=>["can't be blank"]})
 			end
+		end
+	end
+
+		# GET /api/users/:id
+	describe 'GET /api/users/:id' do
+		
+		before { get "/api/users/#{user_id}" }
+
+		it 'returns a status code of 200' do
+			expect(response).to have_http_status(200)
+		end
+
+		it 'returns a user in JSON' do
+
+			expect(json).not_to be_empty
+			expect(json.size).to eq(5)
 		end
 	end
 	# GET /api/user/:id

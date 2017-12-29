@@ -2883,3 +2883,133 @@ Processing by Api::UsersController#create as HTML
 Completed 422 Unprocessable Entity in 10ms (Views: 0.6ms | ActiveRecord: 0.3ms)
   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
   [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (149.4ms)[0m  [1m[31mDELETE FROM "ar_internal_metadata";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'ar_internal_metadata';[0m
+  [1m[35m (154.9ms)[0m  [1m[31mDELETE FROM "users";[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (154.6ms)[0m  [1m[31mDELETE FROM "goals";[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.1ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'goals';[0m
+  [1m[35m (155.0ms)[0m  [1m[31mDELETE FROM "measurements";[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.2ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'measurements';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Hugh"], ["last_name", "Kemmer"], ["gender", "Female"], ["birthdate", "1938-02-18 00:00:00"], ["created_at", "2017-12-29 00:28:24.832032"], ["updated_at", "2017-12-29 00:28:24.832032"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (14.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Jameson"], ["last_name", "Casper"], ["gender", "Female"], ["birthdate", "1976-05-17 00:00:00"], ["created_at", "2017-12-29 00:28:24.835073"], ["updated_at", "2017-12-29 00:28:24.835073"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Reinhold"], ["last_name", "Ratke"], ["gender", "Male"], ["birthdate", "1972-06-28 00:00:00"], ["created_at", "2017-12-29 00:28:24.852086"], ["updated_at", "2017-12-29 00:28:24.852086"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Liliana"], ["last_name", "Hoppe"], ["gender", "Male"], ["birthdate", "1987-02-04 00:00:00"], ["created_at", "2017-12-29 00:28:24.854431"], ["updated_at", "2017-12-29 00:28:24.854431"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Rigoberto"], ["last_name", "Stark"], ["gender", "Male"], ["birthdate", "1993-04-14 00:00:00"], ["created_at", "2017-12-29 00:28:24.856651"], ["updated_at", "2017-12-29 00:28:24.856651"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/api/users" for 127.0.0.1 at 2017-12-28 18:28:24 -0600
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"first_name"=>"Gussie", "last_name"=>"Stokes", "gender"=>"Male", "birthdate"=>"1989-03-02T00:00:00.000Z"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Gussie"], ["last_name", "Stokes"], ["gender", "Male"], ["birthdate", "1989-03-02 00:00:00"], ["created_at", "2017-12-29 00:28:24.877445"], ["updated_at", "2017-12-29 00:28:24.877445"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (0.41ms)
+Completed 201 Created in 13ms (Views: 7.9ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Shany"], ["last_name", "Ward"], ["gender", "Male"], ["birthdate", "1950-06-15 00:00:00"], ["created_at", "2017-12-29 00:28:24.901765"], ["updated_at", "2017-12-29 00:28:24.901765"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Orval"], ["last_name", "Grimes"], ["gender", "Male"], ["birthdate", "1973-03-30 00:00:00"], ["created_at", "2017-12-29 00:28:24.904425"], ["updated_at", "2017-12-29 00:28:24.904425"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Ansley"], ["last_name", "Schuppe"], ["gender", "Female"], ["birthdate", "1945-11-08 00:00:00"], ["created_at", "2017-12-29 00:28:24.906958"], ["updated_at", "2017-12-29 00:28:24.906958"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Glenda"], ["last_name", "Graham"], ["gender", "Female"], ["birthdate", "1934-05-12 00:00:00"], ["created_at", "2017-12-29 00:28:24.909053"], ["updated_at", "2017-12-29 00:28:24.909053"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Ethel"], ["last_name", "Wiza"], ["gender", "Male"], ["birthdate", "1958-03-11 00:00:00"], ["created_at", "2017-12-29 00:28:24.921502"], ["updated_at", "2017-12-29 00:28:24.921502"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/api/users" for 127.0.0.1 at 2017-12-28 18:28:24 -0600
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"first_name"=>"Zaria", "last_name"=>"Hodkiewicz", "gender"=>"Female", "birthdate"=>"1989-03-02T00:00:00.000Z"}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Zaria"], ["last_name", "Hodkiewicz"], ["gender", "Female"], ["birthdate", "1989-03-02 00:00:00"], ["created_at", "2017-12-29 00:28:24.929030"], ["updated_at", "2017-12-29 00:28:24.929030"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (0.39ms)
+Completed 201 Created in 13ms (Views: 1.0ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Rosalee"], ["last_name", "Smith"], ["gender", "Female"], ["birthdate", "1950-12-23 00:00:00"], ["created_at", "2017-12-29 00:28:24.958578"], ["updated_at", "2017-12-29 00:28:24.958578"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Greta"], ["last_name", "Von"], ["gender", "Male"], ["birthdate", "1966-11-17 00:00:00"], ["created_at", "2017-12-29 00:28:24.964945"], ["updated_at", "2017-12-29 00:28:24.964945"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Horace"], ["last_name", "Stoltenberg"], ["gender", "Female"], ["birthdate", "1993-09-02 00:00:00"], ["created_at", "2017-12-29 00:28:24.969135"], ["updated_at", "2017-12-29 00:28:24.969135"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Florida"], ["last_name", "Jakubowski"], ["gender", "Male"], ["birthdate", "1938-09-16 00:00:00"], ["created_at", "2017-12-29 00:28:24.970992"], ["updated_at", "2017-12-29 00:28:24.970992"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Elissa"], ["last_name", "Ledner"], ["gender", "Female"], ["birthdate", "1922-05-19 00:00:00"], ["created_at", "2017-12-29 00:28:24.981020"], ["updated_at", "2017-12-29 00:28:24.981020"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/api/users" for 127.0.0.1 at 2017-12-28 18:28:24 -0600
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>""}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_2[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 2.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Emory"], ["last_name", "Considine"], ["gender", "Male"], ["birthdate", "1992-04-04 00:00:00"], ["created_at", "2017-12-29 00:28:25.006951"], ["updated_at", "2017-12-29 00:28:25.006951"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Jordy"], ["last_name", "Jakubowski"], ["gender", "Male"], ["birthdate", "1947-06-23 00:00:00"], ["created_at", "2017-12-29 00:28:25.013495"], ["updated_at", "2017-12-29 00:28:25.013495"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Aubrey"], ["last_name", "Douglas"], ["gender", "Female"], ["birthdate", "1989-05-13 00:00:00"], ["created_at", "2017-12-29 00:28:25.015442"], ["updated_at", "2017-12-29 00:28:25.015442"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (3.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Tristian"], ["last_name", "O'Reilly"], ["gender", "Female"], ["birthdate", "1933-01-26 00:00:00"], ["created_at", "2017-12-29 00:28:25.022910"], ["updated_at", "2017-12-29 00:28:25.022910"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "gender", "birthdate", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["first_name", "Zachariah"], ["last_name", "Kassulke"], ["gender", "Female"], ["birthdate", "1952-09-28 00:00:00"], ["created_at", "2017-12-29 00:28:25.028605"], ["updated_at", "2017-12-29 00:28:25.028605"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/api/users" for 127.0.0.1 at 2017-12-28 18:28:25 -0600
+Processing by Api::UsersController#create as HTML
+  Parameters: {"user"=>{"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>""}}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_2[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2.19ms)
+Completed 422 Unprocessable Entity in 6ms (Views: 2.6ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
