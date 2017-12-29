@@ -1,27 +1,44 @@
 class Api::UsersController < ApplicationController
+	
+	before_action :set_user, only: [:show, :update]
+
 	def index
 		users = User.all
 		render json: users, status: 200
 	end
 
 	def create
-		user = User.new(user_params)
-		if user.save
-			render json: user, status:201
+		@user = User.new(user_params)
+		if @user.save
+			render json: @user, status: 201
 		else
-			render json: { 
-				errors: { 
-					messages: user.errors.messages 
-				}
-			}, status: 422
+			render_errors_in_json
 		end
 	end
 
 	def show
-		user = User.find_by(id: params[:id])
-		if user
-			render json: user, status: 200
+		if @user
+			render json: @user, status: 200
+		end
+	end
+
+	def update
+		if @user.update(user_params)
+			render json: @user, status: 200
 		else
+			render_errors_in_json
+		end
+	end
+
+	private
+
+	def user_params
+		params.require(:user).permit(:first_name, :last_name, :gender, :birthdate)
+	end
+
+	def set_user
+		@user = User.find_by(id: params[:id])
+		if !@user
 			render json: {
 				errors: {
 					messages: { user: "can't be found"}
@@ -30,9 +47,11 @@ class Api::UsersController < ApplicationController
 		end
 	end
 
-	private
-
-	def user_params
-		params.require(:user).permit(:first_name, :last_name, :gender, :birthdate)
+	def render_errors_in_json
+		render json: { 
+			errors: { 
+				messages: @user.errors.messages 
+			}
+		}, status: 422
 	end
 end

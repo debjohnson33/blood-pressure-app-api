@@ -480,3 +480,28 @@ No serializer found for resource: #<User id: 1, first_name: "Becky", last_name: 
 Completed 200 OK in 27ms (Views: 24.8ms | ActiveRecord: 1.6ms)
 
 
+Started GET "/api/users/1" for 127.0.0.1 at 2017-12-28 19:33:22 -0600
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#show as */*
+  Parameters: {"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>"", "id"=>"1", "user"=>{"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>""}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (0.71ms)
+Completed 200 OK in 55ms (Views: 21.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/users/2" for 127.0.0.1 at 2017-12-28 19:33:30 -0600
+Processing by Api::UsersController#show as */*
+  Parameters: {"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>"", "id"=>"2", "user"=>{"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (0.57ms)
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/users/100" for 127.0.0.1 at 2017-12-28 19:33:35 -0600
+Processing by Api::UsersController#show as */*
+  Parameters: {"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>"", "id"=>"100", "user"=>{"first_name"=>"", "last_name"=>"", "gender"=>"", "birthdate"=>""}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.16ms)
+Completed 404 Not Found in 7ms (Views: 5.6ms | ActiveRecord: 0.2ms)
+
+
