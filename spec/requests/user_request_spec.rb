@@ -176,8 +176,8 @@ RSpec.describe 'Users API', type: :request do
 					expect(json[:errors][:messages]).to eq({
 						:username=>["can't be blank"],
 	 					:email=>["can't be blank"],
-	 					:password=>["can't be blank", "is too short (minimum is 8 characters)"],
-	 					:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"]})
+	 					#:password=>["can't be blank", "is too short (minimum is 8 characters)"],
+	 					#:password_confirmation=>["can't be blank", "is too short (minimum is 8 characters)"]})
 				end
 			end
 		end
