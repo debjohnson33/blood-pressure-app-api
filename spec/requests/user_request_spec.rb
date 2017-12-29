@@ -16,13 +16,12 @@ RSpec.describe 'Users API', type: :request do
 		end
 
 		it 'returns a collection of users in JSON' do
-			json = JSON.parse(response.body)
 
 			expect(json).not_to be_empty
 			expect(json.size).to eq(5)
 		end
 	end
-	# POST /api/users (new measurement)
+	# POST /api/users (new user)
 
 	describe 'POST /api/users' do
 
@@ -82,20 +81,45 @@ RSpec.describe 'Users API', type: :request do
 
 		# GET /api/users/:id
 	describe 'GET /api/users/:id' do
-		
-		before { get "/api/users/#{user_id}" }
 
-		it 'returns a status code of 200' do
-			expect(response).to have_http_status(200)
+		context 'if user exists' do
+			
+			before { get "/api/users/#{user_id}" }
+
+			it 'returns a status code of 200' do
+				expect(response).to have_http_status(200)
+			end
+
+			it 'returns a user in JSON' do
+
+				expect(json).not_to be_empty
+				expect(json[:id]).to eq(user_id)
+				expect(json[:first_name]).to eq(users.first.first_name)
+				expect(json[:last_name]).to eq(users.first.last_name)
+				expect(json[:gender]).to eq(users.first.gender)
+				expect(json[:birthdate]).to eq("1989-03-02T00:00:00.000Z")
+			end
+
 		end
 
-		it 'returns a user in JSON' do
+		context 'if user does not exist' do
+			
+			before { get "/api/users/1000" }
 
-			expect(json).not_to be_empty
-			expect(json.size).to eq(5)
+			it 'returns a status code of 404' do
+				expect(response).to have_http_status(404)
+			end
+
+			it 'returns the validation error messages in JSON' do
+				json = JSON.parse(response.body, symbolize_names: true)
+
+				expect(json).not_to be_empty
+				expect(json[:errors][:messages]).to eq({
+					:user=>"can't be found"})
+			end
 		end
 	end
-	# GET /api/user/:id
+	
 	# PUT /api/user/:id
 	# DELETE /api/user/:id
 

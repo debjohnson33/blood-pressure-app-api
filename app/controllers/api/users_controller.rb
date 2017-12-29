@@ -17,6 +17,19 @@ class Api::UsersController < ApplicationController
 		end
 	end
 
+	def show
+		user = User.find_by(id: params[:id])
+		if user
+			render json: user, status: 200
+		else
+			render json: {
+				errors: {
+					messages: { user: "can't be found"}
+				}
+			}, status: 404
+		end
+	end
+
 	private
 
 	def user_params
