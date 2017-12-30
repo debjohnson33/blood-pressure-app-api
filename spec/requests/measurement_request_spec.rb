@@ -136,5 +136,48 @@ RSpec.describe 'Measurements API', type: :request do
 	# PUT /api/user/measurements/:id
 	# DELETE /api/user/measurements/:id
 
+	describe 'DELETE api/users/:user_id/measurements/:id' do
+		
+		context 'if user exists' do
+			context 'and measurement exists' do			
 
+				before { delete "/api/users/#{user_id}/measurements/#{measurement_id}" }
+
+				it 'returns a status code of 204' do
+					expect(response).to have_http_status(204)
+				end
+			end
+		end
+
+			context 'and measurement does not exist' do
+
+				before { delete "/api/users/#{user_id}/measurements/1000" }
+
+				it 'returns a status code of 404' do
+					expect(response).to have_http_status(404)
+				end
+
+				it 'returns error messages of not found in JSON' do
+					expect(json).not_to be_empty
+					expect(json[:errors][:messages]).to eq({
+						:measurement=>"can't be found"})
+				end
+			end
+
+		context 'if user is not found' do
+			
+			before { post "/api/users/10000/measurements" }
+
+			it 'returns a status code of 404' do
+				expect(response).to have_http_status(404)
+			end
+
+			it 'returns error messages of not found in JSON' do
+				expect(json).not_to be_empty
+				expect(json[:errors][:messages]).to eq({
+					:user=>"can't be found"})
+			end	
+		end
+
+	end
 end

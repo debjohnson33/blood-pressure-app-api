@@ -1,6 +1,7 @@
 class Api::MeasurementsController < ApplicationController
 
-	before_action :set_user, only: [:index, :create]
+	before_action :set_user, only: [:index, :create, :destroy]
+	before_action :set_measurement, only: [:destroy]
 
 	def index
 		render json: @user.measurements, status: 200
@@ -13,6 +14,10 @@ class Api::MeasurementsController < ApplicationController
 		else
 			render_errors_in_json
 		end
+	end
+
+	def destroy
+		@measurement.destroy
 	end
 
 
@@ -39,5 +44,16 @@ class Api::MeasurementsController < ApplicationController
 				messages: @measurement.errors.messages 
 			}
 		}, status: 422
+	end
+
+	def set_measurement
+		@measurement = @user.measurements.find_by(id: params[:id])
+		if !@measurement
+			render json: {
+				errors: {
+					messages: { measurement: "can't be found"}
+				}
+			}, status: 404
+		end		
 	end
 end
