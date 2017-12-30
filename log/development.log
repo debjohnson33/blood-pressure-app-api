@@ -1078,3 +1078,106 @@ Migrating to CreateUsers (20171227225621)
             FROM sqlite_temp_master
             WHERE name='index_measurements_on_user_id' AND type='index'
 [0m
+Started GET "/api/users" for 127.0.0.1 at 2017-12-30 16:50:43 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as */*
+  Parameters: {"user_id"=>1, "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.22ms)
+Completed 200 OK in 70ms (Views: 69.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2017-12-30 16:51:01 -0600
+Processing by Api::UsersController#create as */*
+  Parameters: {"user_id"=>1, "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "user"=>{}}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/api/users_controller.rb:41:in `user_params'
+app/controllers/api/users_controller.rb:11:in `create'
+Started POST "/api/users" for 127.0.0.1 at 2017-12-30 16:57:12 -0600
+Processing by Api::UsersController#create as */*
+  Parameters: {"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]", "user"=>{"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]"}}
+Unpermitted parameter: :password_digest
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bettycrocker"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "betty@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 422 Unprocessable Entity in 204ms (Views: 35.6ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2017-12-30 16:57:48 -0600
+Processing by Api::UsersController#create as */*
+  Parameters: {"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]", "user"=>{"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bettycrocker"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "betty@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Completed 422 Unprocessable Entity in 45ms (Views: 9.9ms | ActiveRecord: 11.8ms)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2017-12-30 16:58:22 -0600
+Processing by Api::UsersController#create as */*
+  Parameters: {"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]", "user"=>{"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "bettycrocker"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "betty@example.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 422 Unprocessable Entity in 50ms (Views: 14.0ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/api/users" for 127.0.0.1 at 2017-12-30 16:59:21 -0600
+Processing by Api::UsersController#index as */*
+  Parameters: {"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]", "user"=>{"username"=>"bettycrocker", "email"=>"betty@example.com", "password_digest"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.07ms)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/users/1/measurements" for 127.0.0.1 at 2017-12-30 17:01:11 -0600
+Processing by Api::MeasurementsController#index as */*
+  Parameters: {"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "measurement"=>{"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm"}}
+Filter chain halted as :authenticate_user rendered or redirected
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/api/users/1/measurements" for 127.0.0.1 at 2017-12-30 17:01:46 -0600
+Processing by Api::MeasurementsController#index as */*
+  Parameters: {"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "measurement"=>{"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.12ms)
+Filter chain halted as :set_user rendered or redirected
+Completed 404 Not Found in 150ms (Views: 8.4ms | ActiveRecord: 1.7ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "jodifoster1"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jodi@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "jodifoster1"], ["email", "jodi@gmail.com"], ["password_digest", "$2a$10$rai.h9NmOzUv3czmk.5w/erPmR4L4rluIxqrrLTtHUPpHSpXfswoK"], ["created_at", "2017-12-30 23:04:58.081138"], ["updated_at", "2017-12-30 23:04:58.081138"]]
+  [1m[35m (279.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/api/users" for 127.0.0.1 at 2017-12-30 17:05:42 -0600
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as */*
+  Parameters: {"user_id"=>1, "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "user"=>{}}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+No serializer found for resource: #<User id: 1, username: "jodifoster1", email: "jodi@gmail.com", password_digest: "$2a$10$rai.h9NmOzUv3czmk.5w/erPmR4L4rluIxqrrLTtHUP...", created_at: "2017-12-30 23:04:58", updated_at: "2017-12-30 23:04:58">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with User::ActiveRecord_Relation (0.46ms)
+Completed 200 OK in 74ms (Views: 70.2ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/api/users/1/measurements" for 127.0.0.1 at 2017-12-30 17:06:07 -0600
+Processing by Api::MeasurementsController#index as */*
+  Parameters: {"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm", "measurement"=>{"user_id"=>"1", "systolic_bp"=>125, "diastolic_bp"=>75, "pulse"=>70, "date_time"=>"20171212", "notes"=>"Left arm"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mMeasurement Load (0.3ms)[0m  [1m[34mSELECT "measurements".* FROM "measurements" WHERE "measurements"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Measurement id: 1, user_id: 1, systolic_bp: 125, diastolic_bp: 75, pulse: 70, date_time: "2017-12-12 00:00:00", notes: "Left arm", created_at: "2017-12-30 02:01:07", updated_at: "2017-12-30 02:01:07">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Measurement::ActiveRecord_Associations_CollectionProxy (0.39ms)
+Completed 200 OK in 152ms (Views: 88.9ms | ActiveRecord: 7.7ms)
+
+
