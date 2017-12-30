@@ -9,7 +9,6 @@ RSpec.describe Measurement, type: :model do
 		it { should validate_presence_of(:diastolic_bp)}
 		it { should validate_presence_of(:pulse)}
 		it { should validate_presence_of(:date_time)}
-		it { should validate_presence_of(:notes)}
 	end
 
 	context "relationships" do

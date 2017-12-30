@@ -11,59 +11,21 @@ RSpec.describe 'Measurements API', type: :request do
 
 	describe 'GET /api/users/measurements' do
 		
-			context 'when user exists' do
-				
-				before(:each) {
-					FactoryBot.create(:measurement, user_id: user_id)
-				}
+		context 'when user exists' do
+			
+			before(:each) {
+				FactoryBot.create(:measurement, user_id: user_id)
+			}
 
-				before { get "/api/users/#{user_id}/measurements" }
+			before { get "/api/users/#{user_id}/measurements" }
 
-				it 'returns a status code of 200' do
-					expect(response).to have_http_status(200)
-				end
-
-				it "returns all of the user's measurements in JSON" do
-					expect(json.size).to eq(6)
-					expect(json[0][:id]).not_to eq(nil) 
-				end
+			it 'returns a status code of 200' do
+				expect(response).to have_http_status(200)
 			end
 
-			context 'if user does not exist' do
-
-				before { get "/api/users/10000/measurements" }
-
-				it 'returns a status code of 404' do
-					expect(response).to have_http_status(404)
-				end
-
-				it 'returns error messages of not found in JSON' do
-					expect(json).not_to be_empty
-					expect(json[:errors][:messages]).to eq({
-						:user=>"can't be found"})
-				end
-			end
-	end
-
-
-	# POST /api/user/user_id/measurements (new measurement)
-
-	describe 'post /api/users/user_id/measurements' do
-
-		describe 'when user exists' do
-
-			context 'if params are valid' do
-
-				before { post "/api/users/#{user_id}/measurements" }
-
-				it 'returns a status code of 200' do
-					expect(response).to have_http_status(200)
-				end
-
-				it "returns all of the user's measurements in JSON" do
-					expect(json.size).to eq(6)
-					expect(json[0][:id]).not_to eq(nil) 
-				end
+			it "returns all of the user's measurements in JSON" do
+				expect(json.size).to eq(6)
+				expect(json[0][:id]).not_to eq(nil) 
 			end
 		end
 
@@ -79,6 +41,86 @@ RSpec.describe 'Measurements API', type: :request do
 				expect(json).not_to be_empty
 				expect(json[:errors][:messages]).to eq({
 					:user=>"can't be found"})
+			end
+		end
+	end
+
+
+	# POST /api/user/user_id/measurements (new measurement)
+
+	describe 'post /api/users/user_id/measurements' do
+
+		describe 'when user exists' do
+
+			context 'if params are valid' do
+
+				let(:valid_params) {
+					{
+						measurement: {
+							systolic_bp: Faker::Number.between(80, 250),
+							diastolic_bp: Faker::Number.between(50, 150),
+							pulse: Faker::Number.between(40, 120),
+							date_time: Faker::Time.between(2.days.ago, Date.today, :day),
+							notes: Faker::Lorem.sentence
+						}
+					}
+				}
+
+				before { post "/api/users/#{user_id}/measurements", params: valid_params }
+
+				it 'returns a status code of 201' do
+					expect(response).to have_http_status(201)
+				end
+
+				it "returns all of the user's measurements in JSON" do
+					expect(json).not_to be_empty
+					expect(json[:id]).not_to eq(nil) 
+					expect(json[:systolic_bp]).not_to eq(nil)
+					expect(json[:diastolic_bp]).not_to eq(nil)
+					expect(json[:pulse]).not_to eq(nil)
+					expect(json[:date_time]).not_to eq(nil)
+				end
+			end
+
+			context 'if params are invalid' do
+
+				let(:valid_params) {
+					{
+						measurement: {
+							systolic_bp: '',
+							diastolic_bp: '',
+							pulse: '',
+							date_time: '',
+							notes: ''
+						}
+					}
+				}
+				before { post "/api/users/#{user_id}/measurements", params: invalid_params}
+				
+				it 'returns a status code of 422' do
+					expect(response).to have_http_status(422)
+				end
+
+			end
+		end
+
+		context 'if user does not exist' do
+
+			before { post "/api/users/10000/measurements" }
+
+			it 'returns a status code of 404' do
+				expect(response).to have_http_status(404)
+			end
+
+			it 'returns the validation error messages in JSON' do
+				expect(json).not_to be_empty
+				expect(json[:errors][:messages]).to eq({
+					:user_id=>["can't be blank"],
+ 					:systolic_bp=>["can't be blank"],
+ 					:diastolic_bp=>["can't be blank"],
+ 					:pulse=>["can't be blank"],
+ 					:date_time=>["can't be blank"]
+ 					})
 			end
 		end
 

@@ -6,6 +6,10 @@ class Api::MeasurementsController < ApplicationController
 		render json: @user.measurements, status: 200
 	end
 
+	def create
+		
+	end
+
 
 	private
 
