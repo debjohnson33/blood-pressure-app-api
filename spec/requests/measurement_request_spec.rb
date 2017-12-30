@@ -57,9 +57,10 @@ RSpec.describe 'Measurements API', type: :request do
 				let(:valid_params) {
 					{
 						measurement: {
-							systolic_bp: Faker::Number.between(80, 250),
-							diastolic_bp: Faker::Number.between(50, 150),
-							pulse: Faker::Number.between(40, 120),
+							user_id: user_id,
+							systolic_bp: 125,
+							diastolic_bp: 70,
+							pulse: 85,
 							date_time: Faker::Time.between(2.days.ago, Date.today, :day),
 							notes: Faker::Lorem.sentence
 						}
@@ -72,9 +73,9 @@ RSpec.describe 'Measurements API', type: :request do
 					expect(response).to have_http_status(201)
 				end
 
-				it "returns all of the user's measurements in JSON" do
+				it "returns the user's new measurement in JSON" do
 					expect(json).not_to be_empty
-					expect(json[:id]).not_to eq(nil) 
+					expect(json[:id]).not_to eq(nil)
 					expect(json[:systolic_bp]).not_to eq(nil)
 					expect(json[:diastolic_bp]).not_to eq(nil)
 					expect(json[:pulse]).not_to eq(nil)
@@ -84,9 +85,10 @@ RSpec.describe 'Measurements API', type: :request do
 
 			context 'if params are invalid' do
 
-				let(:valid_params) {
+				let(:invalid_params) {
 					{
 						measurement: {
+							user_id: '',
 							systolic_bp: '',
 							diastolic_bp: '',
 							pulse: '',
@@ -101,6 +103,16 @@ RSpec.describe 'Measurements API', type: :request do
 					expect(response).to have_http_status(422)
 				end
 
+				it 'returns the validation error messages in JSON' do
+					expect(json).not_to be_empty
+					expect(json[:errors][:messages]).to eq({
+	 					:systolic_bp=>["can't be blank"],
+	 					:diastolic_bp=>["can't be blank"],
+	 					:pulse=>["can't be blank"],
+	 					:date_time=>["can't be blank"]
+	 					})
+				end
+
 			end
 		end
 
@@ -112,16 +124,11 @@ RSpec.describe 'Measurements API', type: :request do
 				expect(response).to have_http_status(404)
 			end
 
-			it 'returns the validation error messages in JSON' do
+			it 'returns error messages of not found in JSON' do
 				expect(json).not_to be_empty
 				expect(json[:errors][:messages]).to eq({
-					:user_id=>["can't be blank"],
- 					:systolic_bp=>["can't be blank"],
- 					:diastolic_bp=>["can't be blank"],
- 					:pulse=>["can't be blank"],
- 					:date_time=>["can't be blank"]
- 					})
-			end
+					:user=>"can't be found"})
+			end			
 		end
 
 	end
