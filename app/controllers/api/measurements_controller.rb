@@ -1,6 +1,6 @@
 class Api::MeasurementsController < ApplicationController
 
-	before_action :authenticate_user
+	#before_action :authenticate_user
 	before_action :set_user, only: [:index, :create, :destroy]
 	before_action :set_measurement, only: [:destroy]
 
